@@ -1,14 +1,29 @@
 package top.orange233.toodooleest;
 
-public class Todos {
+import java.util.List;
 
-    private String name;
+public class Todos {
+    private String title;
+    private List<String> missionList;
     //构造器
-    public Todos(String name) {
-        this.name = name;
+    public Todos(String title,List<String> missionList) {
+        this.title = title;
+        this.missionList=missionList;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public List<String> getMissionList() {
+        return missionList;
+    }
+
+    public void setMissionList(List<String> missionList) {
+        this.missionList = missionList;
     }
 }

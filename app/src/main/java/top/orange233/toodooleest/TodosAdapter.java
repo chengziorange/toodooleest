@@ -3,6 +3,8 @@ package top.orange233.toodooleest;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,11 +21,13 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.ViewHolder> 
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView todosName;
+        private LinearLayout missionsInTodo;
+        private CheckBox checkBox;
 
         public ViewHolder(View view) {
             super(view);
-            todosName = (TextView) view.findViewById(R.id.todos_name);
+            missionsInTodo = (LinearLayout) view.findViewById(R.id.missions_in_todo);
+            //checkBox= (CheckBox)view.findViewById(R.id.check_box);
         }
     }
 
@@ -38,7 +42,6 @@ public class TodosAdapter extends RecyclerView.Adapter<TodosAdapter.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Todos todos = mTodosList.get(position);
-        holder.todosName.setText(todos.getName());
     }
 
     @Override

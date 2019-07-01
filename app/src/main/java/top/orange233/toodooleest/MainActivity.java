@@ -27,9 +27,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initTodos() {
         for (int i = 1; i < 10; i++) {
-            Todos aTodo = new Todos("第" + i + "个假装是任务的东西");
+            Todos aTodo = new Todos("第" + i + "个假装是任务的东西", new ArrayList<String>());
             todosList.add(aTodo);
-
         }
     }
 }
