@@ -31,22 +31,31 @@ import java.util.List;
 public class GoalFragment extends Fragment implements BatListener, OnItemClickListener, OnOutsideClickedListener {
     private BatRecyclerView mRecyclerView;
     private BatAdapter mAdapter;
-    private List<BatModel> mGoals = new ArrayList<>();
     private BatItemAnimator mAnimator;
-
     private Activity mActivity;
 
+    //这是在保存GoalFragment时需要保存的
     private String fragmentName;
+    private List<BatModel> mGoals = new ArrayList<>();
 
+    //测试时使用该Constructor
     public GoalFragment(String fragmentName, Activity mActivity) {
         this.fragmentName = fragmentName;
         this.mActivity = mActivity;
+    }
+
+    //读取时使用该Constructor
+    public GoalFragment(String fragmentName, Activity mActivity, List<BatModel> mGoals) {
+        this.fragmentName = fragmentName;
+        this.mActivity = mActivity;
+        this.mGoals = mGoals;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.goal_fragment, container, false);
+        initGoals();
         return view;
     }
 
@@ -66,7 +75,6 @@ public class GoalFragment extends Fragment implements BatListener, OnItemClickLi
         mRecyclerView = (BatRecyclerView) view.findViewById(R.id.bat_recycler_view);
         mAnimator = new BatItemAnimator();
 
-        initGoals();
         mRecyclerView.getView().setLayoutManager(new LinearLayoutManager(getActivity()));
         mRecyclerView.getView().setAdapter(mAdapter = new BatAdapter(mGoals, this, mAnimator)
                 .setOnItemClickListener(this).setOnOutsideClickListener(this));
@@ -131,6 +139,7 @@ public class GoalFragment extends Fragment implements BatListener, OnItemClickLi
         }
     }
 
+    //测试用List<Goal>
     public void initGoals() {
         mGoals.add(new Goal("这是一个示例任务"));
         mGoals.add(new Goal("向左/右划删除任务"));

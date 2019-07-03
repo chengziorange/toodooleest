@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(adapter);
     }
 
+    //测试用List<GoalFragment>
     private void initFragments() {
         goalFragmentList.add(new GoalFragment("随便生成的第一类任务",this));
         goalFragmentList.add(new GoalFragment("随便生成的第二类任务",this));

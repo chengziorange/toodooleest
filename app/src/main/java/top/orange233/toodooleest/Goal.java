@@ -4,8 +4,8 @@ import com.yalantis.beamazingtoday.interfaces.BatModel;
 
 public class Goal implements BatModel {
 
+    //这是在保存Goal时需要保存的成员
     private String name;
-
     private boolean isChecked;
 
     public Goal(String name) {
