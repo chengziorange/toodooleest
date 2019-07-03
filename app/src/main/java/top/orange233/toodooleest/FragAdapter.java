@@ -24,5 +24,4 @@ public class FragAdapter extends FragmentStatePagerAdapter {
         return mFragments.size();
     }
 
-
 }
