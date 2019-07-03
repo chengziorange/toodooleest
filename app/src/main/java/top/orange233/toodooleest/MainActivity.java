@@ -1,8 +1,7 @@
 package top.orange233.toodooleest;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
@@ -10,25 +9,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private List<Todos> todosList = new ArrayList<>();
+    private List<GoalFragment> goalFragmentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initTodos();
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-        TodosAdapter adapter = new TodosAdapter(todosList);
-        recyclerView.setAdapter(adapter);
+        initFragments();
+
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        getSupportActionBar().setTitle("");
+
+        FragAdapter adapter = new FragAdapter(getSupportFragmentManager(), goalFragmentList);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager.setAdapter(adapter);
     }
 
-    private void initTodos() {
-        for (int i = 1; i < 10; i++) {
-            Todos aTodo = new Todos("第" + i + "个假装是任务的东西", new ArrayList<String>());
-            todosList.add(aTodo);
-        }
+    private void initFragments() {
+        goalFragmentList.add(new GoalFragment("随便生成的第一类任务",this));
+        goalFragmentList.add(new GoalFragment("随便生成的第二类任务",this));
+        goalFragmentList.add(new GoalFragment("随便生成的第三类任务",this));
     }
+
 }
