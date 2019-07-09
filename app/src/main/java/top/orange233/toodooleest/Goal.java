@@ -8,6 +8,7 @@ public class Goal implements BatModel {
     private String name;
     private boolean isChecked;
 
+    //构造器
     public Goal(String name) {
         this.name = name;
     }

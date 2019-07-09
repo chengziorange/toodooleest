@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="material_drawer_secondary_text">@color/md_grey_900</color>
+
+    <dimen name="material_drawer_item_primary">54dp</dimen>
+    <dimen name="material_drawer_item_secondary">54dp</dimen>
+    <dimen name="material_drawer_item_secondary_text">16sp</dimen>
+    <dimen name="material_drawer_width">260dp</dimen>
+</resources>

@@ -2,7 +2,21 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#BDBDBD</color>
 
-    <color name="colorStatusBar">#00B4F2</color>
+    <color name="themeBlue100">#BBDEFB</color>
+    <color name="themeBlue400">#42A5F5</color>
+    <color name="themeBlue600">#1E88E5</color>
+    <color name="themeGreen100">#C8E6C9</color>
+    <color name="themeGreen400">#66BB6A</color>
+    <color name="themeGreen600">#43A047</color>
+    <color name="themeYellow100">#FFF9C4</color>
+    <color name="themeYellow400">#FFEE58</color>
+    <color name="themeYellow600">#FFD835</color>
+    <color name="themeAmber100">#FFECB3</color>
+    <color name="themeAmber400">#FFCA28</color>
+    <color name="themeAmber600">#FFB300</color>
+    <color name="themeOrange100">#FFE0B2</color>
+    <color name="themeOrange400">#FFA726</color>
+    <color name="themeOrange600">#FF8C00</color>
 </resources>

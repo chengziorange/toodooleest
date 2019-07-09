@@ -1,6 +1,7 @@
 package top.orange233.toodooleest;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -32,37 +33,40 @@ public class GoalFragment extends Fragment implements BatListener, OnItemClickLi
     private BatRecyclerView mRecyclerView;
     private BatAdapter mAdapter;
     private BatItemAnimator mAnimator;
-    private Activity mActivity;
 
     //这是在保存GoalFragment时需要保存的
+    private Activity mActivity;
     private String fragmentName;
     private List<BatModel> mGoals = new ArrayList<>();
+    private int mTheme;
 
-    //测试时使用该Constructor
-    public GoalFragment(String fragmentName, Activity mActivity) {
-        this.fragmentName = fragmentName;
-        this.mActivity = mActivity;
-    }
-
-    //读取时使用该Constructor
-    public GoalFragment(String fragmentName, Activity mActivity, List<BatModel> mGoals) {
+    //读取时使用该Constructor。新增参数theme
+    public GoalFragment(String fragmentName, Activity mActivity, List<BatModel> mGoals, int mTheme) {
         this.fragmentName = fragmentName;
         this.mActivity = mActivity;
         this.mGoals = mGoals;
+        this.mTheme = mTheme;
+    }
+
+    public String getFragmentName() {
+        return fragmentName;
+    }
+
+    public List<BatModel> getmGoals() {
+        return mGoals;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.goal_fragment, container, false);
-        initGoals();
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mActivity = getActivity();
+//        mActivity = getActivity();
 
 //        Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
 //        //需要extends AppCompatActivity才能使用，准备放在主Activity里
@@ -75,7 +79,7 @@ public class GoalFragment extends Fragment implements BatListener, OnItemClickLi
         mRecyclerView = (BatRecyclerView) view.findViewById(R.id.bat_recycler_view);
         mAnimator = new BatItemAnimator();
 
-        mRecyclerView.getView().setLayoutManager(new LinearLayoutManager(getActivity()));
+        mRecyclerView.getView().setLayoutManager(new LinearLayoutManager(mActivity));
         mRecyclerView.getView().setAdapter(mAdapter = new BatAdapter(mGoals, this, mAnimator)
                 .setOnItemClickListener(this).setOnOutsideClickListener(this));
 
@@ -91,6 +95,8 @@ public class GoalFragment extends Fragment implements BatListener, OnItemClickLi
             }
         });
 
+        //主题颜色设置
+        setTheme(mTheme);
     }
 
     @Override
@@ -122,7 +128,7 @@ public class GoalFragment extends Fragment implements BatListener, OnItemClickLi
 
     @Override
     public void onClick(BatModel item, int position) {
-        Toast.makeText(getActivity(), item.getText(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(mActivity, item.getText(), Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -139,22 +145,38 @@ public class GoalFragment extends Fragment implements BatListener, OnItemClickLi
         }
     }
 
-    //测试用List<Goal>
-    public void initGoals() {
-        mGoals.add(new Goal("这是一个示例任务"));
-        mGoals.add(new Goal("向左/右划删除任务"));
-        mGoals.add(new Goal("点击左边圆圈标记完成"));
-        mGoals.add(new Goal("标记完成的任务会沉底"));
-        mGoals.add(new Goal("取消标记的任务会浮顶"));
-        mGoals.add(new Goal("凑数任务一"));
-        mGoals.add(new Goal("凑数任务二"));
-        mGoals.add(new Goal("凑数任务三"));
-        mGoals.add(new Goal("凑数任务四"));
-        mGoals.add(new Goal("凑数任务五"));
-        mGoals.add(new Goal("凑数任务六"));
-        mGoals.add(new Goal("凑数任务七"));
-        mGoals.add(new Goal("凑数任务八"));
-        mGoals.add(new Goal("凑数任务九"));
-        mGoals.add(new Goal("凑数任务十"));
+    private void setTheme(int theme) {
+        switch (theme) {
+            case 1:
+                mRecyclerView.setListBackgroundColor(getResources().getColor(R.color.themeBlue100));
+                mRecyclerView.setPlusColor(getResources().getColor(R.color.themeBlue100));
+                mRecyclerView.setCursorColor(getResources().getColor(R.color.themeBlue100));
+                mRecyclerView.setAddButtonColor(Color.WHITE);
+                break;
+            case 2:
+                mRecyclerView.setListBackgroundColor(getResources().getColor(R.color.themeGreen100));
+                mRecyclerView.setPlusColor(getResources().getColor(R.color.themeGreen100));
+                mRecyclerView.setCursorColor(getResources().getColor(R.color.themeGreen100));
+                mRecyclerView.setAddButtonColor(Color.WHITE);
+                break;
+            case 3:
+                mRecyclerView.setListBackgroundColor(getResources().getColor(R.color.themeYellow100));
+                mRecyclerView.setPlusColor(getResources().getColor(R.color.themeYellow100));
+                mRecyclerView.setCursorColor(getResources().getColor(R.color.themeYellow100));
+                mRecyclerView.setAddButtonColor(Color.WHITE);
+                break;
+            case 4:
+                mRecyclerView.setListBackgroundColor(getResources().getColor(R.color.themeAmber100));
+                mRecyclerView.setPlusColor(getResources().getColor(R.color.themeAmber100));
+                mRecyclerView.setCursorColor(getResources().getColor(R.color.themeAmber100));
+                mRecyclerView.setAddButtonColor(Color.WHITE);
+                break;
+            case 5:
+                mRecyclerView.setListBackgroundColor(getResources().getColor(R.color.themeOrange100));
+                mRecyclerView.setPlusColor(getResources().getColor(R.color.themeOrange100));
+                mRecyclerView.setCursorColor(getResources().getColor(R.color.themeOrange100));
+                mRecyclerView.setAddButtonColor(Color.WHITE);
+                break;
+        }
     }
 }
