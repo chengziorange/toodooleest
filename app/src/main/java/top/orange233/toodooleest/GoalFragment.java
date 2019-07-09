@@ -56,6 +56,10 @@ public class GoalFragment extends Fragment implements BatListener, OnItemClickLi
         return mGoals;
     }
 
+    public int getThemeNumber() {
+        return mTheme;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

@@ -2,11 +2,16 @@ package top.orange233.toodooleest;
 
 import com.yalantis.beamazingtoday.interfaces.BatModel;
 
-public class Goal implements BatModel {
+import org.litepal.crud.LitePalSupport;
+
+public class Goal extends LitePalSupport implements BatModel {
 
     //这是在保存Goal时需要保存的成员
     private String name;
     private boolean isChecked;
+
+    //数据库相关
+    private int data_id;
 
     //构造器
     public Goal(String name) {
@@ -23,6 +28,10 @@ public class Goal implements BatModel {
 
     public void setChecked(boolean checked) {
         isChecked = checked;
+    }
+
+    public void setData_id(int data_id) {
+        this.data_id = data_id;
     }
 
     @Override

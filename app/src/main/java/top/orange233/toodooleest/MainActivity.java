@@ -31,6 +31,7 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.yalantis.beamazingtoday.interfaces.BatModel;
 
 import org.litepal.LitePal;
+import org.litepal.tablemanager.Connector;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        LitePal.initialize(this);
+        LitePal.initialize(this);
         View view = View.inflate(mActivity, R.layout.activity_main, null);
         setContentView(view);
         switch (mTheme) {
@@ -78,14 +79,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
 
-//        File dateBaseFile = mActivity.getDatabasePath("AllData.db");
-//        if (dateBaseFile.exists()) {
-//            mFragments = DataBase.ReadFragment(mActivity);
-//        } else {
-//            initFragments();
-//        }
+        File dateBaseFile = mActivity.getDatabasePath("AllData.db");
+        if (dateBaseFile.exists()) {
+            mFragments = DataBase.readList(mActivity);
+        } else {
+            initFragments();
+            Connector.getDatabase();
+        }
 
-        initFragments();
+//        initFragments();
 
         //初始化适配器、ViewPager，并将适配器传入ViewPager
         mAdapter = new FragAdapter(getSupportFragmentManager(), mFragments);
@@ -145,12 +147,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //销毁前保存状态
-//    @Override
-//    protected void onDestroy() {
-//        DataBase.storeList(mFragments);
-//        super.onDestroy();
-//    }
+//    销毁前保存状态
+    @Override
+    protected void onDestroy() {
+        DataBase.storeList(mFragments);
+        super.onDestroy();
+    }
 
     //响应按键
     @Override
